@@ -1,0 +1,14 @@
+class Solution:
+    def distinctSubsequences(self, S):
+        dp = [0]*(len(s)+1)
+        dp[0]=1
+        
+        reg = dict()
+        for i in range(1,len(dp)):
+            dp[i] = 2*dp[i-1]%(10**9 + 7)
+            cur = S[i-1]
+            if cur in reg.keys():
+                last_time_seen_cur=reg[cur]
+                dp[i]=(dp[i]-dp[last_time_seen_cur-1])%(10**9 + 7)
+            reg[cur] = i
+        return dp[-1]
