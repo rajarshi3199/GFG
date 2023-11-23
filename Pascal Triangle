@@ -1,0 +1,16 @@
+class Solution:
+
+    def nthRowOfPascalTriangle(self,numRows):
+        # code here
+        arr = [1]
+        n = 2
+        while n<= numRows:
+            temp = [0] * (n)
+            for i in range(n):
+                sum = 0
+                if i-1 >= 0:  sum += arr[i-1]
+                if i < n-1:  sum += arr[i] 
+                temp[i] = sum % (1000000007)
+            arr = temp
+            n += 1
+        return arr
